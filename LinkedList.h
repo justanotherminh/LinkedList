@@ -5,21 +5,23 @@
 
 using namespace std;
 
-template <class T> struct Node {
-    T value;
-    Node<T> * next;
-    Node(T value, Node * next) {
-        this->value = value;
-        this->next = next;
-    }
-    ~Node() {
-        if (next != NULL) {
-            delete next;
-        }
-    }
+template <typename T> class Node {
+    public:
+        T value;
+        Node<T> * next;
+
+        Node(T value, Node * next) {
+            this->value = value;
+            this->next = next;
+        };
+        ~Node() {
+            if (next != NULL) {
+                delete next;
+            }
+        };
 };
 
-template <class T> class LinkedList {
+template <typename T> class LinkedList {
 private:
     Node<T> * head;
 public:
@@ -29,10 +31,12 @@ public:
     void print();
     void add(T value);
 //    void add(int i, T value);
-    LinkedList & operator << (T value) {
+    LinkedList<T>& operator << (T value) {
         this->add(value);
         return *this;
     }
 };
+
+#import "LinkedList.tpp"
 
 #endif
