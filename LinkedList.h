@@ -1,42 +1,65 @@
 #ifndef LINKEDLIST_LIBRARY_H
 #define LINKEDLIST_LIBRARY_H
 
+#include <stdexcept>
 #include <iostream>
 
 using namespace std;
 
-template <typename T> class Node {
-    public:
-        T value;
-        Node<T> * next;
-
-        Node(T value, Node * next) {
-            this->value = value;
-            this->next = next;
-        };
-        ~Node() {
-            if (next != NULL) {
-                delete next;
-            }
-        };
-};
-
-template <typename T> class LinkedList {
-private:
-    Node<T> * head;
+template<typename T>
+class Node {
 public:
-    LinkedList();
-    ~LinkedList();
-    int length();
-    void print();
-    void add(T value);
-//    void add(int i, T value);
-    LinkedList<T>& operator << (T value) {
-        this->add(value);
+    T value;
+    Node<T> *next;
+
+    Node(T value, Node *next) {
+        this->value = value;
+        this->next = next;
+    }
+
+    ~Node() {
+        if (next != NULL) {
+            delete next;
+        }
+    }
+
+    Node<T> &operator=(T value) {
+        this->value = value;
         return *this;
     }
 };
 
-#import "LinkedList.tpp"
+template<typename T>
+class LinkedList {
+private:
+    Node<T> *head;
+public:
+    LinkedList();
+
+    ~LinkedList();
+
+    int length();
+
+    template<typename U>
+    friend ostream& operator<<(ostream& os, const LinkedList<U>& list);
+
+    void add(T value);
+
+    void add(int idx, T value);
+
+    Node<T> * get(int idx);
+
+    LinkedList<T> &operator<<(T value) {
+        add(value);
+        return *this;
+    }
+
+    T &operator[](int index) {
+        Node<T> * n = get(index);
+        return n->value;
+    }
+};
+
+#import "LinkedList.cpp"
 
 #endif

@@ -17,25 +17,24 @@ int LinkedList<T>::length() {
 }
 
 template<typename T>
-void LinkedList<T>::print() {
-    cout << "{";
-    Node<T> * e = head;
+ostream& operator<<(ostream& os, const LinkedList<T>& list) {
+    os << "{";
+    Node<T> *e = list.head;
     string sep = "";
     while (e != NULL) {
-        cout << sep;
-        cout << e->value;
+        os << sep;
+        os << e->value;
         e = e->next;
         sep = ", ";
     }
-    cout << "}" << endl;
+    os << "}";
+    return os;
 }
-
 
 template<typename T>
 void LinkedList<T>::add(T value) {
-    cout << "ADDED: " << value << endl;
 
-    Node<T> * new_node = new Node<T>(value, NULL);
+    Node<T> *new_node = new Node<T>(value, NULL);
     if (head == NULL) {
         head = new_node;
         return;
@@ -45,6 +44,25 @@ void LinkedList<T>::add(T value) {
         e = e->next;
     }
     e->next = new_node;
+}
+
+template<typename T>
+Node<T> * LinkedList<T>::get(int idx) {
+    if (head == NULL) {
+        cerr << "List index out of bounds" << endl;
+        exit(0);
+    }; // Will move to exception handling
+    Node<T> *e = head;
+    int i = 0;
+    while (i < idx && e->next != NULL) {
+        e = e->next;
+        i++;
+    }
+    if (i < idx) {
+        cerr << "List index out of bounds" << endl;
+        exit(0);
+    };
+    return e;
 }
 
 template<typename T>

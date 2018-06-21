@@ -6,6 +6,8 @@
 
 int main() {
     LinkedList<int> list;
-    list<<1<<2<<3<<4<<5;
-    list.print();
+    list << 1 << 2 << 3 << 4 << 5;
+    list[3] = 100;
+    cout << list << endl;
+    return 0;
 }
