@@ -5,9 +5,8 @@
 #include "LinkedList.h"
 
 int main() {
-    LinkedList<int> list;
-    list << 1 << 2 << 3 << 4 << 5;
-    list[3] = 100;
-    cout << list << endl;
+    LinkedList<string> list;
+    list << "Hello" << "World";
+    cout << list[2] << endl;
     return 0;
 }

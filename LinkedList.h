@@ -1,7 +1,6 @@
 #ifndef LINKEDLIST_LIBRARY_H
 #define LINKEDLIST_LIBRARY_H
 
-#include <stdexcept>
 #include <iostream>
 
 using namespace std;
