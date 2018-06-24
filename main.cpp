@@ -7,6 +7,6 @@
 int main() {
     LinkedList<string> list;
     list << "Hello" << "World";
-    cout << list[2] << endl;
+    cout << list << endl;
     return 0;
 }
