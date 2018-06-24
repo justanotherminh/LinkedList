@@ -2,6 +2,7 @@
 #define LINKEDLIST_LIBRARY_H
 
 #include <iostream>
+#include <cstdlib>
 
 using namespace std;
 
